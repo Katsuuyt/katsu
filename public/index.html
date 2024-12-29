@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloader</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { width: 400px; margin: auto; }
+        .section { border: 1px solid #ccc; padding: 20px; margin: 20px 0; }
+        input[type="text"] { width: 100%; padding: 10px; margin: 10px 0; }
+        input[type="submit"] { padding: 10px 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="section">
+            <h2>Download TikTok MP4</h2>
+            <input type="text" id="tiktokUrl" placeholder="Masukkan URL TikTok">
+            <input type="submit" value="Start" onclick="downloadTikTok()">
+        </div>
+
+        <div class="section">
+            <h2>Download YouTube</h2>
+            <input type="text" id="youtubeUrl" placeholder="Masukkan URL YouTube">
+            <input type="submit" value="Start" onclick="downloadYouTube()">
+        </div>
+    </div>
+
+    <script>
+        function downloadTikTok() {
+            const url = document.getElementById('tiktokUrl').value;
+            fetch('/api/download/tiktok', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ url: url })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Video TikTok berhasil didownload: ' + data.downloadUrl);
+            })
+            .catch(error => {
+                alert('Terjadi kesalahan: ' + error.message);
+            });
+        }
+
+        function downloadYouTube() {
+            const url = document.getElementById('youtubeUrl').value;
+            fetch('/api/download/youtube', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ url: url })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Video YouTube berhasil didownload: ' + data.downloadUrl);
+            })
+            .catch(error => {
+                alert('Terjadi kesalahan: ' + error.message);
+            });
+        }
+    </script>
+</body>
+</html>
