@@ -1,0 +1,12 @@
+{
+  "name": "my-downloader-app",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node api/download.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "ytdl-core": "^4.9.1",
+    "tiktok-scraper": "^1.1.0"
+  }
+}
