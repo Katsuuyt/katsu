@@ -39,7 +39,11 @@
             })
             .then(response => response.json())
             .then(data => {
-                alert('Video TikTok berhasil didownload: ' + data.downloadUrl);
+                if (data.status === 'success') {
+                    alert('Video TikTok berhasil didownload: ' + data.downloadUrl);
+                } else {
+                    alert('Kesalahan: ' + data.message);
+                }
             })
             .catch(error => {
                 alert('Terjadi kesalahan: ' + error.message);
@@ -57,7 +61,11 @@
             })
             .then(response => response.json())
             .then(data => {
-                alert('Video YouTube berhasil didownload: ' + data.downloadUrl);
+                if (data.status === 'success') {
+                    alert('Video YouTube berhasil didownload: ' + data.downloadUrl);
+                } else {
+                    alert('Kesalahan: ' + data.message);
+                }
             })
             .catch(error => {
                 alert('Terjadi kesalahan: ' + error.message);
