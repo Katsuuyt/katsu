@@ -1,11 +1,12 @@
 const express = require('express');
-const ytdl = require('ytdl-core'); // Untuk YouTube
-const TikTokScraper = require('tiktok-scraper'); // Untuk TikTok
+const ytdl = require('ytdl-core');
+const TikTokScraper = require('tiktok-scraper');
 
 const app = express();
 app.use(express.json());
 app.use(express.static('../public')); // Menyajikan file statis dari folder public
 
+// Endpoint untuk mengunduh video YouTube
 app.post('/api/download/youtube', async (req, res) => {
     const { url } = req.body;
     try {
@@ -18,6 +19,7 @@ app.post('/api/download/youtube', async (req, res) => {
     }
 });
 
+// Endpoint untuk mengunduh video TikTok
 app.post('/api/download/tiktok', async (req, res) => {
     const { url } = req.body;
     try {
