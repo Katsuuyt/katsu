@@ -17,52 +17,30 @@
         <div class="section">
             <h2>Download TikTok MP4</h2>
             <input type="text" id="tiktokUrl" placeholder="Masukkan URL TikTok">
-            <input type="submit" value="Start" onclick="downloadTikTok()">
+            <input type="submit" value="Start" onclick="download('tiktok')">
         </div>
 
         <div class="section">
             <h2>Download YouTube</h2>
             <input type="text" id="youtubeUrl" placeholder="Masukkan URL YouTube">
-            <input type="submit" value="Start" onclick="downloadYouTube()">
+            <input type="submit" value="Start" onclick="download('youtube')">
         </div>
     </div>
 
     <script>
-        function downloadTikTok() {
-            const url = document.getElementById('tiktokUrl').value;
-            fetch('/api/download/tiktok', {
+        function download(platform) {
+            const url = platform === 'tiktok' ? document.getElementById('tiktokUrl').value : document.getElementById('youtubeUrl').value;
+            fetch('/.netlify/functions/download', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ url: url })
+                body: JSON.stringify({ url, platform })
             })
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'success') {
-                    alert('Video TikTok berhasil didownload: ' + data.downloadUrl);
-                } else {
-                    alert('Kesalahan: ' + data.message);
-                }
-            })
-            .catch(error => {
-                alert('Terjadi kesalahan: ' + error.message);
-            });
-        }
-
-        function downloadYouTube() {
-            const url = document.getElementById('youtubeUrl').value;
-            fetch('/api/download/youtube', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ url: url })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    alert('Video YouTube berhasil didownload: ' + data.downloadUrl);
+                    alert(`Video berhasil didownload: ${data.downloadUrl}`);
                 } else {
                     alert('Kesalahan: ' + data.message);
                 }
