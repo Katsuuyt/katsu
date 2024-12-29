@@ -1,12 +1,17 @@
 {
-  "name": "my-downloader-app",
+  "name": "youtube-downloader",
   "version": "1.0.0",
-  "dependencies": {
-    "express": "^4.17.1",
-    "ytdl-core": "^4.9.1",
-    "tiktok-scraper": "^1.1.0"
-  },
+  "description": "A simple YouTube downloader using Netlify Functions",
+  "main": "index.js",
   "scripts": {
-    "start": "node functions/download.js"
-  }
+    "start": "netlify dev"
+  },
+  "dependencies": {
+    "ytdl-core": "^4.9.1"
+  },
+  "devDependencies": {
+    "netlify-cli": "^3.0.0"
+  },
+  "author": "katsu",
+  "license": "ISC"
 }
